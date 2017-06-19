@@ -1,0 +1,22 @@
+--get 
+curl --request GET http://myhost/notes/rest
+
+--post  [ -dc = disable cache]
+curl --header "Content-type: application/json" --request POST --data '{"title": "Test Title", "note": "Test note"}' 
+http://localhost/test/pk?_dc=1379027286060
+
+Note: If it accepts JOSN 
+curl --header "Content-type: application/json" --request POST --data '{"user": "alvin", "password": "foobar"}'
+http://localhost:8888/test
+
+Note: without JSON
+curl --request POST --data "user=alvin&password=foobar" http://localhost:8888/test
+
+--Delete 
+curl --header "Content-type: application/json" --request DELETE --data '{"id": 1, "title": "Test Title", "note": "Test note"}' 
+http://myhost/notes/rest
+
+--put 
+curl --header "Content-type: application/json" --request PUT --data '{"id": 100, "title": "Test Title", "note": "Test note"}' 
+http://myhost/notes/rest?_dc=1379027286060
+
