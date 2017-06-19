@@ -1,5 +1,12 @@
---get 
-curl --request GET http://myhost/notes/rest
+
+************* GET ********************
+
+1. curl --request GET http://myhost/notes/rest
+
+2. curl -X GET --basic --user username:password     https://localhost/test/site
+
+
+****************** POST **********************
 
 --post  [ -dc = disable cache]
 curl --header "Content-type: application/json" --request POST --data '{"title": "Test Title", "note": "Test note"}' 
@@ -11,6 +18,23 @@ http://localhost:8888/test
 
 Note: without JSON
 curl --request POST --data "user=alvin&password=foobar" http://localhost:8888/test
+
+    `-i` means show http response headers
+    `-H` allows you to set http request headers. And drupal services need just the content-type header
+    `-c` is to save the cookies on the cookies.txt file. And since we are doing a login this is important
+    `-d` allows you to set the request body, which you will be using on drupal services to send the parameters
+
+
+Note : with request Body
+curl -i -H "Content-type: application/json" -b cookies.txt -X POST http://localhost:8888/service/comment -d '
+    {
+        "nid":"579",
+        "subject":"Test Subject",
+        "comment_body": { "und": [ { "value": "Test Comment" } ] }
+    }
+    '
+
+
 
 --Delete 
 curl --header "Content-type: application/json" --request DELETE --data '{"id": 1, "title": "Test Title", "note": "Test note"}' 
